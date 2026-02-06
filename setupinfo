@@ -1,0 +1,143 @@
+# Create SQL Server
+az sql server create \
+    --name sql-django-blog-server \
+    --resource-group rg-watjesblog \
+    --location northeurope \
+    --admin-user sqladmin \
+    --admin-password 'een wachtwoord'
+
+# Create Serverless Database
+az sql db create \
+    --resource-group rg-watjesblog \
+    --server sql-django-blog-server \
+    --name sqldb-watjesblog \
+    --edition GeneralPurpose \
+    --compute-model Serverless \
+    --family Gen5 \
+    --capacity 1 \
+    --auto-pause-delay 60
+
+# Allow Azure services to access the server
+az sql server firewall-rule create \
+    --resource-group rg-watjesblog \
+    --server sql-django-blog-server \
+    --name AllowAzureServices \
+    --start-ip-address 0.0.0.0 \
+    --end-ip-address 0.0.0.0
+
+
+######## output
+
+{
+  "administratorLogin": "sqladmin",
+  "administratorLoginPassword": null,
+  "administrators": null,
+  "createMode": null,
+  "externalGovernanceStatus": "Disabled",
+  "federatedClientId": null,
+  "fullyQualifiedDomainName": "sql-django-blog-server.database.windows.net",
+  "id": "/subscriptions/42361092-6109-423f-9d80-ffab4a94a602/resourceGroups/rg-watjesblog/providers/Microsoft.Sql/servers/sql-django-blog-server",
+  "identity": null,
+  "isIPv6Enabled": null,
+  "keyId": null,
+  "kind": "v12.0",
+  "location": "northeurope",
+  "minimalTlsVersion": "1.2",
+  "name": "sql-django-blog-server",
+  "primaryUserAssignedIdentityId": null,
+  "privateEndpointConnections": [],
+  "publicNetworkAccess": "Enabled",
+  "resourceGroup": "rg-watjesblog",
+  "restrictOutboundNetworkAccess": "Disabled",
+  "retentionDays": -1,
+  "state": "Ready",
+  "tags": null,
+  "type": "Microsoft.Sql/servers",
+  "version": "12.0",
+  "workspaceFeature": null
+}
+
+{
+  "autoPauseDelay": 60,
+  "availabilityZone": "NoPreference",
+  "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+  "collation": "SQL_Latin1_General_CP1_CI_AS",
+  "createMode": null,
+  "creationDate": "2026-02-06T05:57:00.127000+00:00",
+  "currentBackupStorageRedundancy": "Geo",
+  "currentServiceObjectiveName": "GP_S_Gen5_1",
+  "currentSku": {
+    "capacity": 1,
+    "family": "Gen5",
+    "name": "GP_S_Gen5",
+    "size": null,
+    "tier": "GeneralPurpose"
+  },
+  "databaseId": "2e2dbf5a-932a-4676-b87e-9ae65e6d2a41",
+  "defaultSecondaryLocation": "westeurope",
+  "earliestRestoreDate": null,
+  "edition": "GeneralPurpose",
+  "elasticPoolId": null,
+  "elasticPoolName": null,
+  "encryptionProtector": null,
+  "encryptionProtectorAutoRotation": null,
+  "failoverGroupId": null,
+  "federatedClientId": null,
+  "freeLimitExhaustionBehavior": null,
+  "highAvailabilityReplicaCount": null,
+  "id": "/subscriptions/42361092-6109-423f-9d80-ffab4a94a602/resourceGroups/rg-watjesblog/providers/Microsoft.Sql/servers/sql-django-blog-server/databases/sqldb-watjesblog",
+  "identity": null,
+  "isInfraEncryptionEnabled": false,
+  "keys": null,
+  "kind": "v12.0,user,vcore,serverless",
+  "ledgerOn": false,
+  "licenseType": null,
+  "location": "northeurope",
+  "longTermRetentionBackupResourceId": null,
+  "maintenanceConfigurationId": "/subscriptions/42361092-6109-423f-9d80-ffab4a94a602/providers/Microsoft.Maintenance/publicMaintenanceConfigurations/SQL_Default",
+  "managedBy": null,
+  "manualCutover": null,
+  "maxLogSizeBytes": 193273528320,
+  "maxSizeBytes": 34359738368,
+  "minCapacity": 0.5,
+  "name": "sqldb-watjesblog",
+  "pausedDate": null,
+  "performCutover": null,
+  "preferredEnclaveType": null,
+  "readScale": "Disabled",
+  "recoverableDatabaseId": null,
+  "recoveryServicesRecoveryPointId": null,
+  "requestedBackupStorageRedundancy": "Geo",
+  "requestedServiceObjectiveName": "GP_S_Gen5_1",
+  "resourceGroup": "rg-watjesblog",
+  "restorableDroppedDatabaseId": null,
+  "restorePointInTime": null,
+  "resumedDate": null,
+  "sampleName": null,
+  "secondaryType": null,
+  "sku": {
+    "capacity": 1,
+    "family": "Gen5",
+    "name": "GP_S_Gen5",
+    "size": null,
+    "tier": "GeneralPurpose"
+  },
+  "sourceDatabaseDeletionDate": null,
+  "sourceDatabaseId": null,
+  "sourceResourceId": null,
+  "status": "Online",
+  "tags": null,
+  "type": "Microsoft.Sql/servers/databases",
+  "useFreeLimit": null,
+  "zoneRedundant": false
+}
+
+{
+  "endIpAddress": "0.0.0.0",
+  "id": "/subscriptions/42361092-6109-423f-9d80-ffab4a94a602/resourceGroups/rg-watjesblog/providers/Microsoft.Sql/servers/sql-django-blog-server/firewallRules/AllowAzureServices",
+  "name": "AllowAzureServices",
+  "resourceGroup": "rg-watjesblog",
+  "startIpAddress": "0.0.0.0",
+  "type": "Microsoft.Sql/servers/firewallRules"
+}
+
