@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-# Create your views here.
+from .models import Post
+
+
+def post_list(request):
+    posts = Post.objects.all()
+    return render(request, "blog/post_list.html", {"posts": posts})
+
+
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    return render(request, "blog/post_detail.html", {"post": post})

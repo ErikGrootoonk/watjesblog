@@ -1,2 +1,6 @@
 .venv
 .setupinfo
+__pycache__/
+db.sqlite3
+staticfiles/
+.env
