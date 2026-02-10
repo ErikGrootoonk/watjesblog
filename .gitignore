@@ -4,3 +4,5 @@ __pycache__/
 db.sqlite3
 staticfiles/
 .env
+tailwindcss
+static/css/style.css

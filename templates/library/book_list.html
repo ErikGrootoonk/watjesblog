@@ -3,11 +3,11 @@
 {% block title %}Library — Watjesblog{% endblock %}
 
 {% block content %}
-<h1>Library</h1>
+<h1 class="mb-4">Library</h1>
 {% for book in books %}
-<article>
-    <h2>{{ book.title }}</h2>
-    <p class="book-meta">{{ book.author }} · {{ book.language }}</p>
+<article class="mb-8">
+    <h2 class="mb-1">{{ book.title }}</h2>
+    <p class="text-gray-500 text-sm mb-2">{{ book.author }} · {{ book.language }}</p>
     {% if book.description %}
     <p>{{ book.description }}</p>
     {% endif %}

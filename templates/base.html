@@ -7,17 +7,17 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body>
-    <header>
+<body class="font-serif leading-relaxed text-gray-700 max-w-3xl mx-auto px-4 py-8">
+    <header class="mb-8 pb-4 border-b border-gray-300">
         <nav>
-            <a href="{% url 'blog:post_list' %}">Blog</a>
-            <a href="{% url 'library:book_list' %}">Library</a>
+            <a class="mr-6 text-gray-700 no-underline font-bold hover:underline" href="{% url 'blog:post_list' %}">Blog</a>
+            <a class="mr-6 text-gray-700 no-underline font-bold hover:underline" href="{% url 'library:book_list' %}">Library</a>
         </nav>
     </header>
     <main>
         {% block content %}{% endblock %}
     </main>
-    <footer>
+    <footer class="mt-12 pt-4 border-t border-gray-300 text-gray-500 text-sm">
         <p>&copy; Watjesblog</p>
     </footer>
 </body>

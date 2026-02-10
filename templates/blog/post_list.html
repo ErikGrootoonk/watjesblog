@@ -3,11 +3,11 @@
 {% block title %}Blog — Watjesblog{% endblock %}
 
 {% block content %}
-<h1>Blog</h1>
+<h1 class="mb-4">Blog</h1>
 {% for post in posts %}
-<article>
-    <h2><a href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></h2>
-    <time>{{ post.published_date|date:"F j, Y" }}</time>
+<article class="mb-8">
+    <h2><a class="text-gray-700 no-underline hover:underline" href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></h2>
+    <time class="text-gray-500 text-sm">{{ post.published_date|date:"F j, Y" }}</time>
 </article>
 {% empty %}
 <p>No posts yet.</p>

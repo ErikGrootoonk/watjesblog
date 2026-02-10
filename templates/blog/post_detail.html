@@ -4,11 +4,11 @@
 
 {% block content %}
 <article>
-    <h1>{{ post.title }}</h1>
-    <time>{{ post.published_date|date:"F j, Y" }}</time>
-    <div class="post-content">
+    <h1 class="mb-4">{{ post.title }}</h1>
+    <time class="text-gray-500 text-sm">{{ post.published_date|date:"F j, Y" }}</time>
+    <div class="mt-6">
         {{ post.content|linebreaks }}
     </div>
 </article>
-<p><a href="{% url 'blog:post_list' %}">&larr; Back to blog</a></p>
+<p><a class="text-gray-600" href="{% url 'blog:post_list' %}">&larr; Back to blog</a></p>
 {% endblock %}
