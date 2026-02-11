@@ -1,15 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Blog — Watjesblog{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Blog</h1>
-{% for post in posts %}
-<article class="mb-8">
-    <h2><a class="text-gray-700 no-underline hover:underline" href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></h2>
-    <time class="text-gray-500 text-sm">{{ post.published_date|date:"F j, Y" }}</time>
-</article>
-{% empty %}
-<p>No posts yet.</p>
-{% endfor %}
+
+<div class="text-lg p-6 m-6">
+
+    <div class="flex flex-col md:flex-row">
+        <div class="bg-cyan-50 flex-col text-lg p-6 m-6 md:w-1/2">
+            <p class="font-bold">Welkom op ErikWeb</p>
+            <p>Dit is een persoonlijk blog over de dingen die me bezighouden</p>
+            {% for post in posts %}
+            <article class="mb-8">
+                <h2><a class="text-gray-700 no-underline hover:underline"
+                        href="{% url 'blog:post_detail' post.slug %}">{{ post.title }}</a></h2>
+                <time class="text-gray-500 text-sm">{{ post.published_date|date:"F j, Y" }}</time>
+            </article>
+            {% empty %}
+            <p>No posts yet.</p>
+            {% endfor %}
+        </div>
+
+        <div class="p-6 md:w-1/2">
+            <img src="{% static 'images/sbahn.jpeg' %}" class="w-full h-auto" alt="">
+        </div>
+    </div>
+</div>
 {% endblock %}
